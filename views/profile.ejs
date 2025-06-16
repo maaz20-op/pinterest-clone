@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pinterest Profile</title>
+  <link rel="stylesheet" href="/stylesheets/profilePage.css"/>
+</head>
+<body>
+  
+  <%- include("partials/header") %>
+  
+  
+  <!-- Profile Section -->
+  <header class="profile-header">
+    <img src="https://iili.io/FCf1n3X.png" alt="Profile" class="profile-pic" />
+    <h1> <%= user.fullname %> </h1>
+    <h1 class="username"> @<%= user.username %> </h1>
+    <p class="bio">Punjabi Singer | Legend Never Dies | 💪🏽🕊</p>
+     <form class="upload-box" action="/posts/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" required />
+    <input type="text" name="postdata" required />
+    <button class="upload-btn" type="submit">Upload</button>
+  </form>
+  </header>
+
+<div class="divider"></div>
+  <!-- Pins Grid -->
+  <section class="masonry">
+<% if(user.post.length > 0 ) { %>
+<% user.post.forEach((eachPost)=>{ %>
+    <div class="masonry-item"><img src="/images/uploads/<%= eachPost.image %>" alt=""><h2><%= eachPost.postdata %> </h2></div>
+
+<% }) %>
+
+<% }else {%>
+<h1>No posts found</h1>
+<% } %>
+
+
+  </section>
+</body>
+</html>
