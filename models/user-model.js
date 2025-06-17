@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
   const userSchema = new mongoose.Schema({
   username: String,
   fullname:String,
-  dp:{
+  profileImage:{
     type:String,
-    default: "https://iili.io/FCf1n3X.png"
+    default: "default.png"
   },
   email: String,
   password: String,
@@ -15,6 +15,13 @@ const mongoose = require("mongoose");
     ref:"Post",
   }
   ],
+  pins:[
+    {
+      type:mongoose.Schema.Types.ObjectId,
+      ref:"Pin",
+    }
+    
+    ],
 });
 
 

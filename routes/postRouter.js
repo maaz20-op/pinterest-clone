@@ -4,36 +4,15 @@ const isLoggedIn = require("../middlewares/isLoggedIn");
 const postModel = require("../models/post-model");
 const userModel = require("../models/user-model");
 const upload = require("../config/multerConfig");
-
-router.post("/upload", isLoggedIn, upload.single("image"), async function(req,res){
-  try {
-  let { postdata } = req.body;
-  
-    let user = await userModel.findOne({
-      email:req.user.email,
-    })
-  
-  if(!user) return res.redirect("/profile");
-  
-  let post = await postModel.create({
-    image:req.file.filename,
-    postdata,
-    user:user._id,
-  });
-  
-user.post.push(post._id);
-await user.save();
-  
+const { uploadPost } = require("../controllers/userController");
+const { likePost } = require("../controllers/userController");
 
 
-req.flash("success","Your creation is Added!")
+router.post("/upload", isLoggedIn, upload.single("image"), uploadPost );
 
-return res.redirect("/profile")
-} catch(err) {
-  console.log(err.message)
-}
+router.post("/likepost/:id", isLoggedIn 
+, likePost)
 
-});
 
 
 module.exports = router;

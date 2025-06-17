@@ -55,7 +55,6 @@ bcrypt.compare(password,user.password,function(err, result){
   if(result){
     let token = generateToken(user.email)
     res.cookie("token",token)
-    console.log(token)
     req.flash("success","Successfully Logined!")
     return res.redirect("/profile")
   }

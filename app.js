@@ -4,8 +4,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require("express-session");
 const flash = require('connect-flash');
-
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // 📁 Database Connection
 const db = require("./config/mongoose-connection");
@@ -14,6 +16,7 @@ const db = require("./config/mongoose-connection");
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/usersRouter');
 const postRouter = require("./routes/postRouter");
+const pinRouter = require("./routes/pinRouter");
 // 📢 Print current environment
 console.log("Environment:", process.env.NODE_ENV);
 
@@ -44,13 +47,13 @@ app.use(express.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 
 // 📂 Static folder
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 // 🌐 Routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/posts",postRouter);
-
+app.use("/pins",pinRouter);
 // 🚀 Start server
 app.listen(3000, function (){
   console.log("Server is running....")
