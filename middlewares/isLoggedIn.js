@@ -20,7 +20,6 @@ req.user = user
  return next();
     
   }catch(err){
-    console.log(`Error: ${err.message}`);
     return res.redirect("/");
   }
 };

@@ -27,7 +27,6 @@ module.exports.signupUser = async function(req,res){
         password:hash,
       })
       
-        console.log(createdUser)
 const  token = generateToken(email)
 
 res.cookie("token",token)

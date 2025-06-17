@@ -96,7 +96,6 @@ let pin = await pinModel.create({
   
   user.pins.push(pin._id);
   await user.save();
-console.log(user)
 req.flash("success","You Image Is save in your Pins!")
 
 return res.redirect("/feed")

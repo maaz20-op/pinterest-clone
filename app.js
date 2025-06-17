@@ -18,7 +18,6 @@ const usersRouter = require('./routes/usersRouter');
 const postRouter = require("./routes/postRouter");
 const pinRouter = require("./routes/pinRouter");
 // 📢 Print current environment
-console.log("Environment:", process.env.NODE_ENV);
 
 // 🔐 Middlewares
 
